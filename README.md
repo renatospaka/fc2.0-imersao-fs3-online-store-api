@@ -1,0 +1,1 @@
+API da loja online que irá se conectar aos serviços bancários para consumi-los via gRPC
