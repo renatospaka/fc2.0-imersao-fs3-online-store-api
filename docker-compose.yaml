@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    entrypoint: .docker/entrypoint.sh
+    container_name: app_apistore
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/home/node/app
+#1:38:35
