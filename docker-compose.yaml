@@ -40,7 +40,7 @@ services:
       - PGADMIN_DEFAULT_EMAIL=renatospaka@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=PgAdmin2020!
     ports:
-      - "9000:80"
+      - "9001:80"
     depends_on:
       - db
     # extra_hosts:
