@@ -1,4 +1,12 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
+import slugify from 'slugify';
 
 @Entity({ name: 'products' })
 export class Product {
@@ -22,4 +30,20 @@ export class Product {
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
+
+  @BeforeInsert()
+  generateId() {
+    if (this.id) {
+      return;
+    }
+    this.id = uuidv4();
+  }
+
+  @BeforeInsert()
+  generateSlug() {
+    if (this.slug) {
+      return;
+    }
+    this.slug = slugify(this.name);
+  }
 }
