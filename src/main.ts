@@ -1,3 +1,4 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { EntityNotFoundExceptionFilter } from './exceptionFilters/entityNotFound.exceptionFilter';
@@ -5,6 +6,7 @@ import { EntityNotFoundExceptionFilter } from './exceptionFilters/entityNotFound
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalFilters(new EntityNotFoundExceptionFilter());
+  app.useGlobalPipes(new ValidationPipe({ errorHttpStatusCode: 422 }));
   await app.listen(3000);
 }
 bootstrap();

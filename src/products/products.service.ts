@@ -30,14 +30,21 @@ export class ProductsService {
     if (!product) {
       throw new EntityNotFoundError(Product, idOrSlug);
     }
+    return product;
   }
 
   async update(id: string, updateProductDto: UpdateProductDto) {
-    await this.productRepo.update(id, updateProductDto);
+    const updatedResult = await this.productRepo.update(id, updateProductDto);
+    if (!updatedResult.affected) {
+      throw new EntityNotFoundError(Product, id);
+    }
     return this.productRepo.findOne(id);
   }
 
   async remove(id: string) {
-    await this.productRepo.delete(id);
+    const deletedResult = await this.productRepo.delete(id);
+    if (!deletedResult.affected) {
+      throw new EntityNotFoundError(Product, id);
+    }
   }
 }
