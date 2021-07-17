@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "products" })
 export class Product {
@@ -20,6 +20,6 @@ export class Product {
   @Column()
   slug: string;
 
-  @CreateDateColumn( {type: "timestamp" })
+  @CreateDateColumn({ type: "timestamp" })
   created_at: Date;
 }
