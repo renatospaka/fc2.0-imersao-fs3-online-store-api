@@ -3,10 +3,45 @@ version: "3"
 services:
   app:
     build: .
-    entrypoint: .docker/entrypoint.sh
+    entrypoint: dockerize -wait tcp://db:5432 -timeout 40s ./.docker/entrypoint.sh
     container_name: app_apistore
     ports:
       - 3000:3000
     volumes:
       - .:/home/node/app
-#1:38:35
+    depends_on: 
+      - db
+
+  db:
+    build: .docker/postgres
+    hostname: postgres
+    container_name: db_apistore
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - .docker/postgres/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=Postgres2020!
+      - POSTGRES_DB=online_store
+    ports:
+      - "5432:5432"
+    # extra_hosts:
+    #   - "host.docker.internal:172.17.0.1"
+
+  pgadmin:
+    image: dpage/pgadmin4:5.4
+    hostname: pgadmin
+    container_name: pgadmin_apistore
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - .docker/postgres/pgadmin:/var/lib/pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=renatospaka@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=PgAdmin2020!
+    ports:
+      - "9000:80"
+    depends_on:
+      - db
+    # extra_hosts:
+    #   - "host.docker.internal:172.17.0.1"

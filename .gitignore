@@ -34,3 +34,6 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 _command
+
+.docker/postgres/data
+.docker/postgres/pgadmin
