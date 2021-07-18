@@ -12,7 +12,6 @@ import {
   MinLength,
   ValidateNested,
 } from 'class-validator';
-import { exists } from 'fs';
 import { Product } from 'src/products/entities/product.entity';
 import { Exists } from 'src/validators/exists.rule';
 import { MinCallback } from 'src/validators/minCallback.rule';
@@ -32,14 +31,14 @@ class CreditCardDto {
   @MaxLength(4)
   @IsString()
   @IsNotEmpty()
-  cvv: number;
+  cvv: string;
 
   @MinCallback(() => new Date().getMonth() + 1)
   @IsInt()
   @IsNotEmpty()
   expiration_month: number;
 
-  @MinCallback(() => new Date().getFullYear() + 1)
+  @MinCallback(() => new Date().getFullYear())
   @IsInt()
   @IsNotEmpty()
   expiration_year: number;
@@ -65,7 +64,7 @@ export class CreateOrderDto {
   @IsNotEmpty()
   credit_card: CreditCardDto;
 
-  @Type(() => CreditCardDto)
+  @Type(() => OrderItemDto)
   @ValidateNested({ each: true })
   @ArrayMinSize(1)
   @IsArray()
