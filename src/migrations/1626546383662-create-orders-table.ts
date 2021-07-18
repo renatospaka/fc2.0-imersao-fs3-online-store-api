@@ -33,11 +33,11 @@ export class CreateOrdersTable1626546383662 implements MigrationInterface {
           },
           {
             name: 'credit_card_expiration_month',
-            type: 'varchar',
+            type: 'int',
           },
           {
             name: 'credit_card_expiration_year',
-            type: 'varchar',
+            type: 'int',
           },
           {
             name: 'created_at',

@@ -1,5 +1,6 @@
 import {
   BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
@@ -7,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { v4 as uuidv4 } from 'uuid';
+import { CreditCard } from './creditCard.embbeded';
 import { OrderItem } from './orderItem.entity';
 
 export enum OrderStatus {
@@ -26,20 +28,8 @@ export class Order {
   @Column()
   status: OrderStatus = OrderStatus.Pending;
 
-  @Column()
-  credit_card_number: string;
-
-  @Column()
-  credit_card_name: string;
-
-  @Column()
-  credit_card_cvv: string;
-
-  @Column()
-  credit_card_expiration_month: string;
-
-  @Column()
-  credit_card_expiration_year: string;
+  @Column(() => CreditCard, { prefix: '' })
+  credit_card: CreditCard;
 
   @OneToMany(() => OrderItem, (item) => item.order, { cascade: true })
   items: OrderItem[];
@@ -50,6 +40,11 @@ export class Order {
   @BeforeInsert()
   beforeInsertActions() {
     this.generateId();
+    this.calculateTotal();
+  }
+
+  @BeforeUpdate()
+  beforeUpdateActions() {
     this.calculateTotal();
   }
 
