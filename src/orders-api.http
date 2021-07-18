@@ -1,0 +1,43 @@
+## ORDERS ####
+
+###
+GET http://localhost:3000/orders
+
+###
+GET http://localhost:3000/orders/64be9c0d-0079-442b-8bd7-2de24c1cf322
+
+###
+POST http://localhost:3000/orders
+Content-Type: application/json
+
+{
+  "credit_card": {
+    "number": "1111111111111103",
+    "name": "Luiz carlos",
+    "expiration_month": 7,
+    "expiration_year": 2021,
+    "cvv": "123"
+  },
+  "items":  [
+    {
+      "quantity": 2,
+      "product_id": "fa1198b0-4a38-4f04-8845-8c88b91f28ec"
+    }
+  ]
+}
+
+# {
+#    "credit_card": {
+#       "number": "1111111111111103",
+#       "name": "Luiz carlos",
+#       "expiration_month": 6,
+#       "expiration_year": 2021,
+#       "cvv": "123"
+#    },
+#    "items":  [
+#       {
+#           "quantity": 2,
+#           "product_id": "8ea4791a-9534-4f45-b172-f22a7e2b90c3"
+#       }
+#    ]
+# }
