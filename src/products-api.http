@@ -3,7 +3,7 @@
 GET http://localhost:3000/products
 
 ###
-GET http://localhost:3000/products/f4b6b8bb-7258-43d1-9d45-7646a3fb2a69
+GET http://localhost:3000/products/e1486a0d-6e31-4bd0-892e-ac0890dc0c83
 
 ###
 GET http://localhost:3000/products/tv-32
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 
 ###
-PATCH http://localhost:3000/products/f4b6b8bb-7258-43d1-9d45-7646a3fb2a69
+PATCH http://localhost:3000/products/e1486a0d-6e31-4bd0-892e-ac0890dc0c83
 Content-Type: application/json
 
 {
@@ -31,4 +31,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/products/f4b6b8bb-7258-43d1-9d45-7646a3fb2a69
+DELETE http://localhost:3000/products/e1486a0d-6e31-4bd0-892e-ac0890dc0c83

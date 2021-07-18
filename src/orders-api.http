@@ -15,13 +15,13 @@ Content-Type: application/json
     "number": "1111111111111103",
     "name": "Luiz carlos",
     "expiration_month": 7,
-    "expiration_year": 2021,
+    "expiration_year": 2025,
     "cvv": "123"
   },
-  "items":  [
+  "items": [
     {
       "quantity": 2,
-      "product_id": "fa1198b0-4a38-4f04-8845-8c88b91f28ec"
+      "product_id": "e1486a0d-6e31-4bd0-892e-ac0890dc0c83"
     }
   ]
 }
